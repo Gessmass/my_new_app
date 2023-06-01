@@ -4,45 +4,64 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import PokemonCard from './components/PokemonCard'
 
-function App() {
-  const [count, setCount] = useState(0)
-
   const pokemonList = [
     {
         name: "bulbasaur",
         imgSrc:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-    },
-    {
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+      },
+      {
+        name: "charmander",
+        imgSrc:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+      },
+      {
+        name: "squirtle",
+        imgSrc:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+      },
+      {
+        name: "pikachu",
+        imgSrc:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+      },
+      {
         name: "mew",
-    },
-];
+      },
+    ];
+
+function App() {
+  const [pokemonIndex, setPokemonIndex] = useState(0)
+    
+      const handleNext = () => {
+
+        setPokemonIndex(pokemonIndex + 1);
+        
+      };
+    
+      const handlePrevious = () => {
+        setPokemonIndex(pokemonIndex - 1);
+      
+        
+      };
+  
 
   return (
     <>
-      <div>
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-      
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        
-      </div>
-      <h1>Vite + React</h1>
+      <h1>Bonjour</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
       <div>
-        <PokemonCard pokemon = {pokemonList[0]} />
+        <PokemonCard pokemon = {pokemonList[pokemonIndex]} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div>
+      <br />
+      {pokemonIndex > 0 ? <button onClick={handlePrevious}>Previous</button> : <p></p>}
+      {pokemonIndex < pokemonList.length - 1 ? <button onClick={handleNext}>Next</button> : <p></p>}
+    </div>
     </>
-  )
-}
+  );
+  }
+
 
 export default App
