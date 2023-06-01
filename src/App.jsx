@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -31,9 +32,18 @@ import NavBar from  "./components/NavBar"
       },
     ];
 
-function App() {
+function App() {  
+
+  useEffect (
+    () => {
+      alert("hello pokemon trainer :)");
+    },
+    []
+  );
+
   const [pokemonIndex, setPokemonIndex] = useState(0)
     
+
       const handleNext = () => {
         setPokemonIndex(pokemonIndex + 1);
         
@@ -44,15 +54,28 @@ function App() {
       
         
       };
-  
+
+  useEffect(() => {
+    if (pokemonList[pokemonIndex].name === "pikachu") {
+    const delay = 100; 
+    const timeoutId = setTimeout(() => {
+      alert('pika pikachu');
+    }, delay);
+
+    return () => {
+      clearTimeout(timeoutId);
+    }
+  }
+}, [pokemonIndex]);
 
   return (
     <>
-    <NavBar 
+    <NavBar
     pokemonIndex={pokemonIndex}
     handleNext={handleNext}
     handlePrevious={handlePrevious}
-    pokemonList={pokemonList}/>
+    pokemonList={pokemonList}
+    />
       <h1>Bonjour</h1>
       <div className="card">
       </div>
