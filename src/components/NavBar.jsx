@@ -1,20 +1,17 @@
-import { useEffect } from "react";
-
-
 
 
 const NavBar = (props) => {
-  const {pokemonIndex, pokemonList, handlePrevious, handleNext} = props
-
- 
+  const { pokemonList, handlePokemonClick } = props;
 
   return (
-    <>
-    {pokemonIndex > 0 ? <button onClick={handlePrevious}>Previous</button> : <p></p>}
-    {pokemonIndex < pokemonList.length - 1 ? <button onClick={handleNext}>Next</button> : <p></p>}
-    </>
+   <>
+      {pokemonList.map((pokemon, index) => (
+        <button key={index} onClick={() => handlePokemonClick(index)}>
+          {pokemon.name}
+        </button>
+      ))}
+  </>
   );
-}
-
+};
 
 export default NavBar;
